@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Interactive Listening Materials — Level 1</title>
+<style>
+:root{--bg:#f3f5fb;--c:#fff;--tx:#1d2540;--mu:#667094;--pr:#4f46e5;--ok:#16a34a;--wn:#d97706;--bd:#e2e6f3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1120;--c:#181c33;--tx:#e8ebff;--mu:#9aa3c7;--bd:#2a3050;--pr:#8f8fff}}
+:root[data-theme="dark"]{--bg:#0e1120;--c:#181c33;--tx:#e8ebff;--mu:#9aa3c7;--bd:#2a3050;--pr:#8f8fff}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.app{display:flex;min-height:100vh}aside{width:240px;flex:none;background:var(--c);border-right:1px solid var(--bd);position:sticky;top:0;height:100vh;overflow:auto;padding:14px 10px;z-index:20}
+aside h1{font-size:15px;margin:4px 8px 14px;color:var(--pr)}aside a{display:block;padding:10px 12px;border-radius:10px;color:var(--tx);text-decoration:none;margin-bottom:3px;cursor:pointer}
+aside a.on,aside a:hover{background:var(--pr);color:#fff}.col{flex:1;min-width:0;display:flex;flex-direction:column}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--c);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:8px 14px}
+header b{flex:1;text-align:center;font-size:14px;letter-spacing:.5px}#mb{display:none}
+main{padding:18px;max-width:1000px;width:100%;margin:0 auto;flex:1}footer{text-align:center;color:var(--mu);font-size:13px;padding:14px}footer a{color:var(--pr);margin:0 6px;cursor:pointer}
+button,select,input,textarea{font:inherit;color:var(--tx)}button,.btn{background:var(--pr);color:#fff;border:0;border-radius:10px;padding:9px 14px;cursor:pointer;text-decoration:none;display:inline-block}
+button.g{background:transparent;color:var(--tx);border:1px solid var(--bd)}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+input,select,textarea{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:8px 10px;max-width:100%}textarea{width:100%}
+.card{background:var(--c);border:1px solid var(--bd);border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(30,40,90,.06);margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.grid .card{margin:0}.big{font-size:26px;font-weight:700}
+.bar{height:12px;background:var(--bd);border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#4f46e5,#ec4899,#f59e0b)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.mu{color:var(--mu)}.chip{font-size:12px;border-radius:99px;padding:2px 9px;border:1px solid var(--bd);white-space:nowrap}
+.s0{color:#3b82f6}.s1{color:var(--wn)}.s2{color:var(--ok)}.li{display:flex;gap:10px;align-items:center;padding:10px 4px;border-bottom:1px solid var(--bd);cursor:pointer}.li:hover{background:var(--bg)}.li b{width:34px}.li span.t{flex:1}
+.tabs{display:flex;gap:6px;overflow:auto;margin-bottom:12px}.tabs button{white-space:nowrap}
+.opt{display:block;padding:11px 12px;border:1px solid var(--bd);border-radius:10px;margin:6px 0;cursor:pointer}.opt:has(input:checked){border-color:var(--pr);background:rgba(79,70,229,.12)}.opt.ok{border-color:var(--ok);background:rgba(22,163,74,.15)}.opt.no{border-color:#dc2626;background:rgba(220,38,38,.12)}
+.hl{background:#fde68a;color:#222;border-radius:4px}#tr{line-height:1.9}#tr.read{max-width:640px;margin:auto}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid var(--bd);padding:8px;text-align:left}
+.err{background:#fee2e2;color:#7f1d1d;border-radius:10px;padding:10px;margin:8px 0}#toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:10px;z-index:99;display:none;max-width:90%}
+.cert{background:#fffdf5;color:#2a1f4d;border:10px double #b45309;outline:6px solid #4f46e5;outline-offset:-22px;border-radius:6px;padding:34px 24px;text-align:center;background-image:radial-gradient(circle at 10% 10%,#fde68a55,transparent 30%),radial-gradient(circle at 90% 90%,#a5b4fc66,transparent 35%),radial-gradient(circle at 90% 10%,#f9a8d466,transparent 30%)}
+.cert h2{font:700 30px Georgia,serif;margin:6px 0;color:#4f46e5;letter-spacing:2px}.cert h3{font:italic 700 26px Georgia,serif;margin:6px 0;border-bottom:2px solid #b45309;display:inline-block;padding:0 24px}.cert .ic{font-size:42px}
+.sig{display:flex;justify-content:space-around;align-items:end;margin-top:18px;gap:10px;flex-wrap:wrap;font-size:13px}.sig div{border-top:1px solid #2a1f4d;padding-top:4px;min-width:150px}
+#bd{display:none}
+@media(max-width:900px){#mb{display:inline-block}aside{position:fixed;left:0;top:0;transform:translateX(-102%);transition:transform .2s}body.nav aside{transform:none}body.nav #bd{display:block;position:fixed;inset:0;background:#0007;z-index:15}main{padding:12px}}
+@media print{aside,header,footer,.np,#toast{display:none!important}body,main{background:#fff!important;padding:0!important}.cert{break-inside:avoid}}
+</style></head><body><div class="app"><aside id="sb" aria-label="Sidebar"></aside><div id="bd"></div><div class="col"><header><button id="mb" class="g" data-a="nav" aria-label="Menu">☰</button><b>INTERACTIVE LISTENING MATERIALS</b><select id="lg" aria-label="Language"><option value="en">🇬🇧 English</option><option value="id">🇮🇩 Indonesia</option></select><button class="g" data-a="mode" aria-label="Light/Dark">◐</button><button class="g" data-a="go" data-h="#/set" aria-label="Profile">👤</button></header><main id="m" tabindex="-1"></main><footer><div><b>Interactive Listening Materials — Level 1</b> · Created by Ahmad Budi Leksono</div><div><a data-a="go" data-h="#/help">Privacy</a><a data-a="go" data-h="#/help">Help</a><a data-a="go" data-h="#/help">Accessibility</a><a data-a="go" data-h="#/verify">Certificate Verification</a></div></footer></div></div><div id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script><script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),e=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const N=142,PASS=80;
+const TT=["First Snow Fall","Jessica's First Day of School","My Flower Garden","Going Camping","My House","My First Pet","Jennifer the Firefighter","Mark's Big Game","The Easter Egg Hunt","Joe's First Car","Summer Vacation","Cleaning Up Leaves","Susan's Wedding Day","Remembrance Day","Halloween Night","Christmas Eve","Thanksgiving","Learning How to Drive","Housework","Working Outside","Daily Schedule","Meals","Seasons","Weather","House","School","Subjects","International Students","Interests and Hobbies","Movies","Flowers","The Shopping Mall","Travel","The Farm","Transportation (1)","Holidays","Diseases","Jobs","My Body","Clothing","Colors","Wild Animals","Months","Days of the Week"];TT[141]="Tools";
+const L={en:{dash:'Dashboard',lis:'Listening Materials',th:'Themes',prog:'Progress',ev:'Evaluation',ce:'Certificates',se:'Settings',wel:'Welcome to Interactive Listening Materials',cur:'Current Theme',done:'Completed',inp:'In Progress',ns:'Not Started',all:'All',avg:'Average Score',lp:'Listening Progress',search:'Search number, title or keyword',s1:'1 Pre-listening',s2:'2 Listening',s3:'3 Transcript',s4:'4 Vocabulary',s5:'5 Comprehension',s6:'6 Evaluation',prev:'← Previous Theme',next:'Next Theme →',back:'Back to Themes',nocon:'Source text for this theme has not been imported yet. Go to Settings → Content Import and load Level_01 LISTENING.docx.',aerr:'Audio could not be loaded. Please try again.',retry:'Retry',start:'Start Quiz',submit:'Submit',res:'YOUR RESULT',pass:'🏆 PASSED',keep:'📖 KEEP PRACTICING',need:'You need at least 80% to complete this quiz.',retake:'🔄 RETAKE QUIZ',lock:'🔒 Certificate Locked — Achieve a minimum score of 80% to unlock your certificate.',unl:'🎉 CERTIFICATE UNLOCKED',view:'VIEW CERTIFICATE',pdf:'DOWNLOAD PDF',print:'PRINT CERTIFICATE',listenfirst:'Finish the listening activity first.',fin:'I finished listening',ans:'Please answer all questions.',saved:'Saved',name:'Full Name',login:'Start Learning',imp:'Content Import',impb:'Import',reset:'Reset all data',hist:'Attempt history',mode:'Light/Dark'},
+id:{dash:'Dasbor',lis:'Materi Listening',th:'Tema',prog:'Kemajuan',ev:'Evaluasi',ce:'Sertifikat',se:'Pengaturan',wel:'Selamat datang di Materi Listening Interaktif',cur:'Tema Saat Ini',done:'Selesai',inp:'Sedang Berjalan',ns:'Belum Dimulai',all:'Semua',avg:'Skor Rata-rata',lp:'Kemajuan Listening',search:'Cari nomor, judul, atau kata kunci',s1:'1 Pra-listening',s2:'2 Mendengarkan',s3:'3 Transkrip',s4:'4 Kosakata',s5:'5 Pemahaman',s6:'6 Evaluasi',prev:'← Tema Sebelumnya',next:'Tema Berikutnya →',back:'Kembali ke Tema',nocon:'Teks sumber tema ini belum diimpor. Buka Pengaturan → Impor Konten dan muat Level_01 LISTENING.docx.',aerr:'Audio tidak dapat dimuat. Silakan coba lagi.',retry:'Coba Lagi',start:'Mulai Kuis',submit:'Kirim',res:'HASIL ANDA',pass:'🏆 LULUS',keep:'📖 TERUS BERLATIH',need:'Anda memerlukan minimal 80% untuk menyelesaikan kuis ini.',retake:'🔄 ULANGI KUIS',lock:'🔒 Sertifikat Terkunci — Raih skor minimal 80% untuk membuka sertifikat.',unl:'🎉 SERTIFIKAT TERBUKA',view:'LIHAT SERTIFIKAT',pdf:'UNDUH PDF',print:'CETAK SERTIFIKAT',listenfirst:'Selesaikan aktivitas listening terlebih dahulu.',fin:'Saya selesai mendengarkan',ans:'Mohon jawab semua pertanyaan.',saved:'Tersimpan',name:'Nama Lengkap',login:'Mulai Belajar',imp:'Impor Konten',impb:'Impor',reset:'Hapus semua data',hist:'Riwayat percobaan',mode:'Terang/Gelap'}};
+const t=k=>(L[S.lang]||L.en)[k]||L.en[k]||k;
+let S={},PL={n:0,idx:0,rate:1,vol:1,playing:0,err:0,tok:0,ss:[]};
+function load(){try{S=JSON.parse(localStorage.getItem('ilm1'))||{}}catch(x){S={}}S=Object.assign({name:'',sid:'',cls:'',school:'',lang:'en',dark:null,sq:1,so:1,seq:0,th:{},pg:{}},S)}
+function save(){try{localStorage.setItem('ilm1',JSON.stringify(S))}catch(x){toast('Storage unavailable — progress kept for this session only.')}}
+function toast(m){const x=$('#toast');x.textContent=m;x.style.display='block';clearTimeout(toast.i);toast.i=setTimeout(()=>x.style.display='none',2800)}
+const TH=n=>({n,title:(S.th[n]&&S.th[n].title)||TT[n-1]||'Article #'+n,text:(S.th[n]&&S.th[n].text)||''});
+const P=n=>S.pg[n]||(S.pg[n]={op:0,li:0,at:[],pred:'',dr:null,cert:null,res:null,sr:''});
+const best=n=>Math.max(0,...P(n).at.map(a=>a.score));
+const st=n=>{const p=P(n);return p.li&&best(n)>=PASS?2:(p.op||p.at.length||p.li)?1:0};
+const SN=['ns','inp','done'],SC=['s0','s1','s2'],SI=['🔵','🟡','🟢'];
+const count=s=>{let c=0;for(let i=1;i<=N;i++)if(st(i)==s)c++;return c};
+const avgS=()=>{let a=[];for(let i=1;i<=N;i++)if(P(i).at.length)a.push(best(i));return a.length?Math.round(a.reduce((x,y)=>x+y)/a.length):0};
+const certs=()=>{let r=[];for(let i=1;i<=N;i++)if(P(i).cert)r.push([i,P(i).cert]);return r};
+/* text utils */
+const STOP=new Set('that this with have from they them then than were was are and for the you your his her she him its not but all can will would could should there their what when where which while about into over after before again very much more some such only also just been being does did doing each other our out too off own same both few any because here these those said says say like make made went come came back how why who whom whose'.split(' '));
+const sents=x=>((x||'').replace(/\s+/g,' ').trim().match(/[^.!?]+[.!?]+["”']?|[^.!?]+$/g)||[]).map(s=>s.trim()).filter(Boolean);
+const cws=s=>(s.match(/[A-Za-z']+/g)||[]).filter(w=>w.length>=4&&!STOP.has(w.toLowerCase())&&!/'/.test(w));
+const uniq=a=>[...new Set(a.map(w=>w.toLowerCase()))];
+function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const shuf=(a,r=Math.random)=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const GEN='house water school happy window garden family morning friend table river music night green small'.split(' ');
+function gen(n){const tx=TH(n).text,ss=sents(tx).filter(s=>s.split(/\s+/).length>=4&&cws(s).length),r=rng(n*7919+13),pool=uniq(cws(tx));if(!ss.length)return[];
+ let c=[];ss.forEach((s,i)=>uniq(cws(s)).forEach(w=>c.push([i,w])));c=shuf(c,r);const used={},pick=[];
+ for(let pass=0;pass<5&&pick.length<10;pass++)c.forEach(x=>{if(pick.length<10&&(used[x[0]]||0)==pass&&!pick.some(p=>p[0]==x[0]&&p[1]==x[1])){used[x[0]]=pass+1;pick.push(x)}});
+ return pick.map((x,i)=>{const s=ss[i%1e9&&x[0]],w=x[1],id=n+'-'+i,ps=pool.filter(p=>p!=w&&Math.abs(p.length-w.length)<=3);
+  const ds=shuf(ps.length>=3?ps:pool.filter(p=>p!=w).concat(GEN.filter(g=>g!=w&&!pool.includes(g))),r);let O;
+  const sw=(sx,from,to)=>sx.replace(new RegExp('\\b'+from+'\\b','i'),m=>m[0]==m[0].toUpperCase()?to[0].toUpperCase()+to.slice(1):to);
+  if(i%2){const alts=[];const wl=uniq(cws(s));for(const a of wl)for(const b of shuf(pool.filter(p=>p!=a),r)){const v=sw(s,a,b);if(v!=s&&!alts.includes(v)&&alts.length<3&&!alts.some(q=>q==v))alts.push(v);if(alts.length>=3)break}
+   if(alts.length==3)return{id,q:'Which sentence matches the story?',opts:[{t:s,c:1},...alts.map(a=>({t:a}))],exp:s}}
+  const a=[w,...ds.slice(0,3)].map(z=>z[0]==undefined?z:(s.match(new RegExp('\\b'+w+'\\b','i'))||[w])[0][0]==w[0].toUpperCase()?z[0].toUpperCase()+z.slice(1):z);
+  O=a.map((z,k)=>({t:z,c:k==0?1:0}));
+  return{id,q:'Complete the sentence from the story: “'+s.replace(new RegExp('\\b'+w+'\\b','i'),'_____')+'”',opts:O,exp:s}})}
+/* import */
+function parse(tx){const lines=tx.replace(/\r/g,'').split('\n'),out={};let cur=null;
+ lines.forEach(l=>{const m=l.match(/^\s*article\s*#?\s*(\d+)\s*[:.\-–—]?\s*(.*)$/i);if(m&&+m[1]>=1&&+m[1]<=N&&l.trim().length<120){cur={title:m[2].trim(),body:[]};out[+m[1]]=cur}else if(cur){if(!cur.title&&l.trim())cur.title=l.trim();else cur.body.push(l)}});
+ let c=0;for(const k in out){const o=out[k],b=o.body.join('\n').replace(/\n{3,}/g,'\n\n').trim();if(b){S.th[k]={title:o.title||TT[k-1]||'Article #'+k,text:b};c++}}save();return c}
+/* audio */
+function stopA(){PL.tok++;PL.playing=0;try{speechSynthesis.cancel()}catch(x){}}
+function sp(i){if(!('speechSynthesis'in window)){PL.err=1;return pu()}stopA();PL.idx=Math.max(0,i);
+ if(PL.idx>=PL.ss.length){PL.idx=PL.ss.length;const p=P(PL.n);p.li=1;save();return pu()}
+ const u=new SpeechSynthesisUtterance(PL.ss[PL.idx]),my=++PL.tok;u.lang='en-US';u.rate=PL.rate;u.volume=PL.vol;
+ u.onend=()=>{if(PL.tok==my&&PL.playing)sp(PL.idx+1)};u.onerror=v=>{if(PL.tok==my&&!['canceled','interrupted'].includes(v.error)){PL.err=1;PL.playing=0;pu()}};
+ PL.playing=1;PL.err=0;try{speechSynthesis.speak(u)}catch(x){PL.err=1;PL.playing=0}pu()}
+const fmt=s=>Math.floor(s/60)+':'+String(Math.round(s%60)).padStart(2,'0');
+function pu(){const g=x=>document.getElementById(x);if(!g('pp'))return;const tot=PL.ss.length,w=PL.ss.join(' ').split(/\s+/).length,w0=PL.ss.slice(0,PL.idx).join(' ').split(/\s+/).filter(Boolean).length,sec=w/(150*PL.rate);
+ g('pp').textContent=PL.playing?'⏸':'▶';g('pb').value=PL.idx;g('pt').textContent=fmt(w0/(150*PL.rate))+' / ~'+fmt(sec);g('pe').style.display=PL.err?'block':'none';
+ document.querySelectorAll('#tr span').forEach((s,i)=>s.classList.toggle('hl',PL.playing&&i==PL.idx));const f=g('fl');if(f)f.disabled=!!P(PL.n).li}
+function player(n){const ss=sents(TH(n).text);if(PL.n!=n||PL.ss.length!=ss.length){stopA();PL={n,idx:0,rate:PL.rate||1,vol:PL.vol,playing:0,err:0,tok:PL.tok,ss}}
+ return`<div class="card"><div class="row"><button data-a="pr" aria-label="Previous">⏪</button><button id="pp" data-a="pp" aria-label="Play/Pause">▶</button><button data-a="pn" aria-label="Next">⏩</button><button class="g" data-a="rp" aria-label="Replay">🔁</button><span id="pt" class="mu">0:00</span><label>🔊 <input type="range" min="0" max="1" step=".1" value="${PL.vol}" data-a="vol" aria-label="Volume"></label>
+ <select data-a="rate" aria-label="Speed">${[['0.75','0.75×'],['1','1× (Normal Speed)'],['1.25','1.25×'],['1.5','1.5×']].map(x=>`<option value="${x[0]}" ${+x[0]==PL.rate?'selected':''}>${x[1]}</option>`).join('')}</select></div>
+ <input id="pb" type="range" min="0" max="${ss.length}" value="${PL.idx}" data-a="seek" style="width:100%;margin-top:10px" aria-label="Progress">
+ <div id="pe" class="err" style="display:none">${t('aerr')} <button data-a="pe">${t('retry')}</button> (Transcript ↓)</div>
+ <button id="fl" class="g" data-a="fin" ${P(n).li?'disabled':''}>${t('fin')}</button></div>`}
+/* views */
+function bar(p){return`<div class="bar" role="progressbar" aria-valuenow="${p}"><i style="width:${p}%"></i></div>`}
+const chip=n=>`<span class="chip ${SC[st(n)]}">${SI[st(n)]} ${t(SN[st(n)])}</span>`;
+function vDash(){const d=count(2),c=certs().length;let cur=0;for(let i=1;i<=N;i++)if(st(i)==1){cur=i;break}if(!cur)for(let i=1;i<=N;i++)if(st(i)==0){cur=i;break}
+ const acts=[];for(let i=1;i<=N;i++)P(i).at.forEach(a=>acts.push([a.date,i,a]));acts.sort((a,b)=>b[0]<a[0]?-1:1);
+ const B=[[1,'🏅 First Theme Completed'],[10,'🏅 10 Themes Completed'],[50,'🏅 50 Themes Completed'],[142,'🏆 Level 1 Listening Master']];
+ return`<h2>${t('wel')}</h2><p>👋 <b>${e(S.name)}</b> · Level 1</p><div class="grid"><div class="card">🎧 ${t('lp')}<div class="big">${d} / ${N}</div></div><div class="card">📊 ${t('avg')}<div class="big">${avgS()}%</div></div><div class="card">🏆 ${t('ce')}<div class="big">${c}</div></div><div class="card">✅ ${t('done')}<div class="big">${d}</div></div><div class="card">🔄 ${t('inp')}<div class="big">${count(1)}</div></div><div class="card">📚 ${t('cur')}<div class="big" style="font-size:17px">${cur?String(cur).padStart(2,'0')+' — '+e(TH(cur).title):'—'}</div>${cur?`<button data-a="go" data-h="#/t/${cur}/1">▶</button>`:''}</div></div>
+ <div class="card"><b>Level 1 Progress</b> — ${d} / ${N}<br>0% ${bar(Math.round(d/N*100))} ${Math.round(d/N*100)}%</div>
+ <div class="card"><b>🏅</b> ${B.map(b=>`<span class="chip" style="opacity:${d>=b[0]?1:.4}">${b[1]}</span>`).join(' ')} <span class="chip">XP ${certs().reduce((s,x)=>s+x[1].score,0)}</span></div>
+ <div class="card"><b>Recent</b>${acts.slice(0,5).map(a=>`<div class="mu">${a[0].slice(0,10)} · #${a[1]} ${e(TH(a[1]).title)} · ${a[2].score}%</div>`).join('')||'<div class="mu">—</div>'}</div>`}
+function vThemes(){return`<h2>${t('th')}</h2><div class="row"><input id="q" type="search" placeholder="${t('search')}" style="flex:1" aria-label="Search"><select id="f"><option value="-1">${t('all')}</option><option value="0">${t('ns')}</option><option value="1">${t('inp')}</option><option value="2">${t('done')}</option></select></div><div class="card" id="tl" style="margin-top:12px"></div>`}
+function tlist(){const q=($('#q').value||'').toLowerCase().trim(),f=+$('#f').value;let h='';for(let i=1;i<=N;i++){const T=TH(i);if(f>=0&&st(i)!=f)continue;if(q&&!(String(i)==q||String(i).padStart(2,'0')==q||T.title.toLowerCase().includes(q)||T.text.toLowerCase().includes(q)))continue;
+ h+=`<div class="li" tabindex="0" role="link" data-a="go" data-h="#/t/${i}/1"><b>${String(i).padStart(2,'0')}</b><span class="t">${e(T.title)}${T.text?'':' <span class="mu">·</span>'}</span>${chip(i)}</div>`}$('#tl').innerHTML=h||'<p class="mu">—</p>'}
+function vTheme(n,s){n=Math.min(N,Math.max(1,+n||1));s=+s||1;const T=TH(n),p=P(n);p.op=1;save();
+ const nav=`<div class="row np" style="justify-content:space-between;margin-top:14px"><button class="g" ${n<2?'disabled':''} data-a="go" data-h="#/t/${n-1}/1">${t('prev')}</button><b>Theme ${String(n).padStart(2,'0')}</b><button class="g" ${n>=N?'disabled':''} data-a="go" data-h="#/t/${n+1}/1">${t('next')}</button></div><div class="row" style="justify-content:center;margin-top:8px"><button class="g" data-a="go" data-h="#/themes">${t('back')}</button><button class="g" data-a="go" data-h="#/">${t('dash')}</button></div>`;
+ let h=`<div class="mu">ARTICLE #${n}</div><h2 style="margin:0">${e(T.title).toUpperCase()}</h2><p class="mu">Learning Objective: listen to “${e(T.title)}” and understand the main ideas and details. ${chip(n)}</p><div class="tabs">${[1,2,3,4,5,6].map(i=>`<button class="${i==s?'':'g'}" data-a="go" data-h="#/t/${n}/${i}">${t('s'+i)}</button>`).join('')}</div>`;
+ if(!T.text)return h+`<div class="card">${t('nocon')}<br><br><button data-a="go" data-h="#/set">${t('imp')}</button></div>`+nav;
+ const sn=sents(T.text),voc=uniq(cws(T.text)).sort((a,b)=>b.length-a.length).slice(0,10);
+ if(s==1)h+=`<div class="card"><b>Vocabulary preview</b><p>${voc.map(w=>`<span class="chip">${e(w)}</span>`).join(' ')}</p><b>Key expression</b><p><i>${e(sn[0])}</i></p><b>Prediction</b><p class="mu">What do you think “${e(T.title)}” is about?</p><textarea data-a="pred" rows="3">${e(p.pred)}</textarea></div><button data-a="go" data-h="#/t/${n}/2">${t('s2')} →</button>`;
+ if(s==2)h+=player(n)+`<button data-a="go" data-h="#/t/${n}/3">${t('s3')} →</button>`;
+ if(s==3)h+=player(n)+`<div class="card"><div class="row np"><button class="g" data-a="trt">Show / Hide Transcript</button><button class="g" data-a="fs" data-d="-2">A−</button><button class="g" data-a="fs" data-d="2">A+</button><button class="g" data-a="rd">Reading mode</button></div><div id="tr" style="font-size:18px;margin-top:10px">${sn.map(x=>`<span>${e(x)}</span> `).join('')}</div></div><button data-a="go" data-h="#/t/${n}/4">${t('s4')} →</button>`;
+ if(s==4)h+=`<div class="card" style="overflow:auto"><table><tr><th>Word</th><th>Meaning (context)</th><th>Example</th><th></th></tr>${voc.map(w=>{const ex=sn.find(x=>new RegExp('\\b'+w+'\\b','i').test(x))||'';return`<tr><td><b>${e(w)}</b></td><td><a href="https://www.google.com/search?q=define+${encodeURIComponent(w)}" target="_blank" rel="noopener">define ↗</a></td><td>${e(ex)}</td><td><button class="g" data-a="say" data-w="${e(w)}" aria-label="Pronounce ${e(w)}">🔊</button></td></tr>`}).join('')}</table></div><button data-a="go" data-h="#/t/${n}/5">${t('s5')} →</button>`;
+ if(s==5){const r=rng(n*31+5),tf=sn.filter(x=>cws(x).length).slice(0,4).map((x,i)=>{const w=uniq(cws(x))[0],o=shuf(uniq(cws(T.text)).filter(z=>z!=w),r)[0],f=i%2&&o?x.replace(new RegExp('\\b'+w+'\\b','i'),o):x;return[f,f==x]});
+  h+=`<div class="card"><b>B. True / False</b> — the sentence matches the story?${tf.map((q,i)=>`<div style="margin:8px 0">${e(q[0])}<div class="row"><button class="g" data-a="tf" data-v="1" data-c="${q[1]?1:0}">True</button><button class="g" data-a="tf" data-v="0" data-c="${q[1]?1:0}">False</button><span></span></div></div>`).join('')}</div><div class="card"><b>E. Short Listening Response</b><p class="mu">Write 1–2 sentences about what you heard.</p><textarea data-a="sr" rows="3">${e(p.sr)}</textarea></div><button data-a="go" data-h="#/t/${n}/6">${t('s6')} →</button>`}
+ if(s==6)h+=vQuiz(n);return h+nav}
+function vQuiz(n){const p=P(n);if(p.res&&!p.dr)return vRes(n);
+ if(!p.dr){const q=gen(n);if(!q.length)return`<div class="card">${t('nocon')}</div>`;return`<div class="card"><h3>🎯 EVALUATION QUIZ</h3><p>${q.length} × Multiple Choice (4 options). ${t('need')}</p>${p.li?`<button data-a="qs">${t('start')}</button>`:`<p class="err">${t('listenfirst')}</p><button class="g" data-a="go" data-h="#/t/${n}/2">${t('s2')}</button>`}</div>`}
+ return`<div class="card"><h3>🎯 EVALUATION QUIZ</h3>${p.dr.qs.map((q,i)=>`<fieldset style="border:0;padding:0;margin:0 0 14px"><legend><b>Question ${i+1}</b><br>${e(q.q)}</legend>${q.opts.map((o,k)=>`<label class="opt"><input type="radio" name="${q.id}" value="${k}" data-a="pick" data-q="${q.id}" ${p.dr.ans[q.id]==k?'checked':''}> <b>${'ABCD'[k]}.</b> ${e(o.t)}</label>`).join('')}</fieldset>`).join('')}<button data-a="qsub">${t('submit')}</button></div>`}
+function vRes(n){const p=P(n),r=p.res,ok=r.score>=PASS;return`<div class="card"><h3>${t('res')}</h3><div class="big">${r.score}%</div><p>Correct: <b>${r.correct}/${r.total}</b> · Incorrect: <b>${r.total-r.correct}/${r.total}</b></p><h3>${ok?t('pass'):t('keep')}</h3>${ok?`<h3>${t('unl')}</h3><div class="row"><button data-a="go" data-h="#/cert/${n}">${t('view')}</button><button data-a="go" data-h="#/cert/${n}" data-p="1">${t('pdf')}</button><button data-a="go" data-h="#/cert/${n}" data-p="1">${t('print')}</button></div>`:`<p>${t('need')}</p><p>${t('lock')}</p>`}<button class="g" data-a="qr">${t('retake')}</button></div><div class="card"><b>Review</b>${r.qs.map((q,i)=>`<div style="margin:10px 0"><b>${i+1}.</b> ${e(q.q)}${q.opts.map((o,k)=>`<div class="opt ${o.c?'ok':(r.ans[q.id]==k?'no':'')}">${'ABCD'[k]}. ${e(o.t)}</div>`).join('')}</div>`).join('')}</div>`}
+function vProg(){let h='';for(let i=1;i<=N;i++)P(i).at.forEach(a=>h+=`<tr><td>${i}. ${e(TH(i).title)}</td><td>#${a.no}</td><td>${a.date.slice(0,16).replace('T',' ')}</td><td>${a.score}%</td><td>${a.correct}✓ ${a.total-a.correct}✗</td><td>${a.score>=PASS?'✅':'⏳'}</td></tr>`);
+ return`<h2>${t('prog')}</h2><div class="card">Level 1: ${count(2)} / ${N}${bar(Math.round(count(2)/N*100))}</div><div class="card" style="overflow:auto"><b>${t('hist')}</b><table>${h||'<tr><td class="mu">—</td></tr>'}</table></div>`}
+function vEval(){let h='';for(let i=1;i<=N;i++){const p=P(i);h+=`<div class="li" tabindex="0" data-a="go" data-h="#/t/${i}/6"><b>${String(i).padStart(2,'0')}</b><span class="t">${e(TH(i).title)}</span><span class="chip">${p.at.length?best(i)+'% · '+p.at.length+'×':'—'}</span></div>`}return`<h2>${t('ev')}</h2><div class="card">${h}</div>`}
+function vCerts(){const c=certs();return`<h2>${t('ce')}</h2><div class="card">${c.map(x=>`<div class="li" data-a="go" data-h="#/cert/${x[0]}"><b>🏆</b><span class="t">${e(TH(x[0]).title)}<br><small class="mu">${x[1].id}</small></span><span class="chip">${x[1].score}%</span></div>`).join('')||'<p class="mu">🔒 '+t('lock')+'</p>'}</div>`}
+function certHTML(c,n){return`<div class="cert" id="cert"><div class="ic">🎧 🎵 📚 ⭐</div><div style="letter-spacing:4px">LISTENING MATERIALS — LEVEL 1</div><h2>CERTIFICATE OF COMPLETION</h2><p>This certificate is proudly presented to</p><h3>${e(c.name)}</h3><p>for successfully completing</p><h3 style="font-size:22px">${e(TH(n).title)}</h3><p>Listening Materials — Level 1</p><p>Score: <b style="font-size:22px">${c.score}%</b> · Date: <b>${c.date.slice(0,10)}</b></p><div class="sig"><div>Created by:<br><b>Ahmad Budi Leksono</b></div><div id="qr" style="border:0"></div><div>Certificate ID<br><b>${c.id}</b><br><span style="color:#16a34a">✔ Valid</span></div></div><div style="font-size:40px">🏆</div></div>`}
+function vCert(n){const c=P(n).cert;if(!c)return`<h2>${t('ce')}</h2><div class="card">${t('lock')}<br><br><button data-a="go" data-h="#/t/${n}/6">${t('retake')}</button></div>`;
+ return`<div class="np row" style="margin-bottom:10px"><button data-a="print">${t('print')}</button><button data-a="print">${t('pdf')}</button><button class="g" data-a="go" data-h="#/certs">${t('ce')}</button></div>`+certHTML(c,n)+`<p class="np mu">PDF: choose “Save as PDF” in the print dialog.</p>`}
+function vVerify(id){let f=null;certs().forEach(x=>{if(x[1].id==(id||'').toUpperCase())f=x});
+ return`<h2>Certificate Verification</h2><div class="card row"><input id="vid" placeholder="LISTEN-L1-000001" value="${e(id||'')}"><button data-a="vf">Verify</button></div>`+(id?(f?`<div class="card"><b>Status: ✅ Valid</b><br>Student: ${e(f[1].name)}<br>Theme: ${e(TH(f[0]).title)}<br>Score: ${f[1].score}%<br>Date: ${f[1].date.slice(0,10)}<br>ID: ${f[1].id}</div>`:`<div class="err">Not found in this browser's records.</div>`):'')}
+function vSet(){return`<h2>${t('se')}</h2><div class="card"><h3>My Profile</h3><div class="grid">${[['name','Full Name'],['sid','Student ID'],['cls','Class'],['school','School']].map(f=>`<label>${f[1]}<br><input data-a="prof" data-k="${f[0]}" value="${e(S[f[0]])}"></label>`).join('')}</div><p>Progress: ${count(2)}/${N}</p></div>
+ <div class="card"><label><input type="checkbox" data-a="sq" ${S.sq?'checked':''}> Shuffle Questions</label> &nbsp; <label><input type="checkbox" data-a="so" ${S.so?'checked':''}> Shuffle Options</label></div>
+ <div class="card"><h3>${t('imp')}</h3><p class="mu">Format: lines “Article #1” + title, followed by the text. Accepts .docx / .txt or paste.</p><input type="file" id="fi" accept=".docx,.txt,.md"><textarea id="pt2" rows="5" placeholder="Article #1&#10;First Snow Fall&#10;..."></textarea><button data-a="imp">${t('impb')}</button> <span class="mu">${Object.keys(S.th).length}/${N} imported</span></div>
+ <div class="card"><button class="g" data-a="rst">${t('reset')}</button></div>`}
+function vHelp(){return`<h2>Help · Privacy · Accessibility</h2><div class="card">All data (profile, progress, quiz history, certificates) is stored only in this browser. Audio uses your device's English text-to-speech voice. Keyboard navigation, focus indicators, ARIA labels and scalable text are supported.</div>`}
+function vLogin(){return`<div class="card" style="max-width:420px;margin:40px auto"><h2>🎧 INTERACTIVE LISTENING MATERIALS</h2><p>Level 1 · Ahmad Budi Leksono</p><label>${t('name')}<br><input id="ln" style="width:100%" autocomplete="name"></label><br><br><button data-a="login">${t('login')}</button></div>`}
+/* router */
+const MENU=[['dash','#/','🏠'],['lis','#/themes','🎧'],['th','#/themes','📚'],['prog','#/prog','📊'],['ev','#/ev','🎯'],['ce','#/certs','🏆'],['se','#/set','⚙️']];
+function route(){stopA();document.body.classList.remove('nav');const h=location.hash||'#/',a=h.slice(2).split('/'),m=$('#m');let v;
+ try{if(!S.name&&a[0]!='verify')v=vLogin();else if(a[0]=='themes')v=vThemes();else if(a[0]=='t')v=vTheme(a[1],a[2]);else if(a[0]=='prog')v=vProg();else if(a[0]=='ev')v=vEval();else if(a[0]=='certs')v=vCerts();else if(a[0]=='cert')v=vCert(+a[1]);else if(a[0]=='verify')v=vVerify(a[1]);else if(a[0]=='set')v=vSet();else if(a[0]=='help')v=vHelp();else v=vDash()}
+ catch(x){console.error(x);v='<div class="err">Something went wrong. <button data-a="go" data-h="#/">'+t('dash')+'</button></div>'}
+ m.innerHTML=v;$('#sb').innerHTML='<h1>🎧 Listening L1</h1>'+MENU.map(x=>`<a tabindex="0" class="${h==x[1]&&x[0]!='lis'?'on':''}" data-a="go" data-h="${x[1]}">${x[2]} ${t(x[0])}</a>`).join('');
+ $('#lg').value=S.lang;document.documentElement.lang=S.lang;if(a[0]=='themes')tlist();if(a[0]=='t'&&PL.ss.length)pu();window.scrollTo(0,0);
+ if(a[0]=='cert'&&P(+a[1]).cert&&window.QRCode){try{new QRCode($('#qr'),{text:location.href.split('#')[0]+'#/verify/'+P(+a[1]).cert.id,width:84,height:84})}catch(x){}}
+ if(a[0]=='cert'&&location.hash.includes('p=1')){}}
+function go(h){if(location.hash==h)route();else location.hash=h}
+function applyMode(){const d=S.dark==null?matchMedia('(prefers-color-scheme:dark)').matches:S.dark;document.documentElement.setAttribute('data-theme',d?'dark':'light')}
+/* events */
+document.addEventListener('click',ev=>{const el=ev.target.closest('[data-a]');if(!el)return;const a=el.dataset.a,n=PL.n;
+ if(a=='go')return go(el.dataset.h);if(a=='nav')return document.body.classList.toggle('nav');
+ if(a=='mode'){S.dark=!(document.documentElement.dataset.theme=='dark');save();return applyMode()}
+ if(a=='pp'){return PL.playing?(stopA(),pu()):sp(PL.idx>=PL.ss.length?0:PL.idx)}if(a=='pr')return sp(PL.idx-1);if(a=='pn')return sp(PL.idx+1);if(a=='rp')return sp(0);if(a=='pe')return sp(PL.idx);
+ if(a=='fin'){P(n).li=1;save();pu();return toast(t('saved'))}
+ if(a=='trt')return $('#tr').style.display=$('#tr').style.display=='none'?'':'none';if(a=='rd')return $('#tr').classList.toggle('read');
+ if(a=='fs'){const x=$('#tr');x.style.fontSize=Math.min(36,Math.max(12,parseInt(x.style.fontSize)+ +el.dataset.d))+'px';return}
+ if(a=='say'){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(el.dataset.w);u.lang='en-US';speechSynthesis.speak(u)}catch(x){toast(t('aerr'))}return}
+ if(a=='tf'){const ok=el.dataset.v==el.dataset.c;el.parentNode.querySelector('span').textContent=ok?'✅':'❌';return}
+ if(a=='qs'){const p=P(+location.hash.split('/')[2]),q=gen(+location.hash.split('/')[2]).map(x=>({id:x.id,q:x.q,exp:x.exp,opts:S.so?shuf(x.opts):x.opts}));p.dr={qs:S.sq?shuf(q):q,ans:{}};p.res=null;save();return route()}
+ if(a=='pick'){return}
+ if(a=='qsub'){const k=+location.hash.split('/')[2],p=P(k),d=p.dr;if(d.qs.some(q=>d.ans[q.id]==null))return toast(t('ans'));
+  let c=0;d.qs.forEach(q=>{if(q.opts[d.ans[q.id]].c)c++});const score=Math.round(c/d.qs.length*100),at={no:p.at.length+1,date:new Date().toISOString(),score,correct:c,total:d.qs.length};p.at.push(at);p.res=Object.assign({qs:d.qs,ans:d.ans},at);p.dr=null;
+  if(score>=PASS&&p.li&&!p.cert)p.cert={id:'LISTEN-L1-'+String(++S.seq).padStart(6,'0'),score,date:at.date,name:S.name};save();return route()}
+ if(a=='qr'){const p=P(+location.hash.split('/')[2]);p.res=null;p.dr=null;save();return route()}
+ if(a=='print')return window.print();if(a=='vf')return go('#/verify/'+encodeURIComponent($('#vid').value.trim()));
+ if(a=='login'){const v=$('#ln').value.trim();if(!v)return toast(t('name'));S.name=v;save();return go('#/')}
+ if(a=='imp'){const f=$('#fi').files[0],done=x=>{const c=parse(x);toast(c?`Imported ${c} article(s)`:'No "Article #N" sections found.');route()};
+  if(f){const r=new FileReader();if(/\.docx$/i.test(f.name)){if(!window.mammoth)return toast('DOCX reader unavailable offline — paste the text instead.');r.onload=()=>mammoth.extractRawText({arrayBuffer:r.result}).then(o=>done(o.value)).catch(()=>toast('Could not read file.'));r.readAsArrayBuffer(f)}else{r.onload=()=>done(r.result);r.readAsText(f)}}else done($('#pt2').value);return}
+ if(a=='rst'){if(confirm('Delete ALL data?')){S={};try{localStorage.removeItem('ilm1')}catch(x){}load();go('#/')}return}});
+document.addEventListener('change',ev=>{const el=ev.target,a=el.dataset.a;
+ if(el.id=='lg'){S.lang=el.value;save();return route()}if(el.id=='f')return tlist();
+ if(a=='rate'){PL.rate=+el.value;if(PL.playing)sp(PL.idx);return pu()}
+ if(a=='pick'){const p=P(+location.hash.split('/')[2]);p.dr.ans[el.dataset.q]=+el.value;save()}
+ if(a=='sq'||a=='so'){S[a]=el.checked?1:0;save()}});
+document.addEventListener('input',ev=>{const el=ev.target,a=el.dataset.a;if(el.id=='q')return tlist();
+ if(a=='vol'){PL.vol=+el.value;return}if(a=='seek'){return sp(+el.value)}
+ if(a=='pred'||a=='sr'){const p=P(+location.hash.split('/')[2]);p[a=='pred'?'pred':'sr']=el.value;save()}
+ if(a=='prof'){S[el.dataset.k]=el.value;save()}});
+document.addEventListener('keydown',ev=>{if((ev.key=='Enter'||ev.key==' ')&&ev.target.matches('.li,aside a')){ev.preventDefault();ev.target.click()}});
+window.addEventListener('hashchange',route);window.addEventListener('online',()=>toast('Back online — progress is saved.'));window.addEventListener('offline',()=>toast('Offline — progress is saved locally.'));
+load();applyMode();route();
+</script></body></html>
